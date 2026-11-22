@@ -1,0 +1,8 @@
+# This site is plain static HTML. There is no build step.
+# Pinning the publish directory stops Netlify guessing a framework and
+# inserting a build command, which is the usual cause of a first failed
+# deploy on a hand-written site. Safe to delete if you'd rather set the
+# publish directory in the Netlify UI instead.
+
+[build]
+  publish = "."

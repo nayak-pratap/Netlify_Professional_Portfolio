@@ -1,0 +1,24 @@
+# Netlify redirect and rewrite rules — pratapnayak.netlify.app
+
+# Clean URL for the tools listing (unchanged)
+/tools                              /tools.html                                                 200
+
+# The Manager's Toolkit moved to GitHub Pages (22 Nov 2026).
+# File names are identical on both sides, so the splat maps one-to-one:
+#   /tools/managers-toolkit/machining-tools.html
+#     -> https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html
+/tools/managers-toolkit/*           https://nayak-pratap.github.io/MBA_Managers_Toolkit/:splat  301
+/tools/managers-toolkit             https://nayak-pratap.github.io/MBA_Managers_Toolkit/        301
+
+# These paths are in the live site but not in this deploy, and the new pages no
+# longer link to them. Without a rule they become 404s for anyone holding a
+# bookmark or an external link. Sending them to the listing is the safe default
+# until each has a confirmed new home — replace the target when you know it.
+/tools/manufacturing-excellence/*   /tools.html                                                 301
+/tools/six-sigma-green-belt/*       /tools.html                                                 301
+/tools/six-sigma-black-belt/*       /tools.html                                                 301
+/tools/dmaic-project-workbook/*     /tools.html                                                 301
+/case-study                         /tools.html                                                 301
+
+# Add ! after a status code (301!) to force the rule even when a file exists at
+# that path. Not needed here, since none of these paths are in this deploy.

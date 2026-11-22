@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Working Library &amp; Tools | Pratap Nayak</title>
+<meta name="description" content="Engineering, quality, operations, and AI decision tools built in the open by Pratap Nayak — with editable inputs and transparent assumptions.">
+<meta name="theme-color" content="#142d32">
+<link rel="canonical" href="https://pratapnayak.com/tools">
+<meta property="og:title" content="Working Library &amp; Tools — Pratap Nayak">
+<meta property="og:description" content="Engineering depth. Connected thinking. Practical impact. Calculators, frameworks, and browser-based decision aids.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pratapnayak.com/tools">
+
+<!-- Structured Data (JSON-LD) for Search & Entity Recognition -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Working Library & Tools — Pratap Nayak",
+  "url": "https://pratapnayak.com/tools",
+  "author": {
+    "@type": "Person",
+    "name": "Pratap Nayak",
+    "url": "https://pratapnayak.com/",
+    "jobTitle": "Manager - Solutions Engineering",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "addressCountry": "IN"
+    }
+  }
+}
+</script>
+
+<style>
+:root {
+  --ink: #142d32;
+  --ink-soft: #203c40;
+  --muted: #56666a;
+  --paper: #f8f7f3;
+  --white: #ffffff;
+  --line: #dce2dc;
+  --accent: #bde4ce;
+  --green: #27634e;
+  --green-deep: #163e30;
+  --soft: #eef2ed;
+  --mint-tint: #d5ebdc;
+  --radius: 18px;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  transition: color .2s var(--ease), background-color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+}
+
+button {
+  font: inherit;
+  transition: background-color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.skip {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  background: var(--white);
+  color: var(--ink);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  z-index: 100;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+/* Header & Active Navigation */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(248, 247, 243, .94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.nav {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  text-decoration: none;
+  font-size: 1.1875rem;
+  font-weight: 750;
+  letter-spacing: -.03em;
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.monogram {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 10px;
+  font-size: .8125rem;
+  letter-spacing: .08em;
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.links a:not(.nav-cta) {
+  text-decoration: none;
+  font-size: .9375rem;
+  font-weight: 600;
+  position: relative;
+  padding-block: 6px;
+}
+
+.links a:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .22s var(--ease);
+}
+
+.links a:not(.nav-cta):hover,
+.links a:not(.nav-cta).active {
+  color: var(--green);
+}
+
+.links a:not(.nav-cta).active::after {
+  transform: scaleX(1);
+}
+
+.nav-cta {
+  text-decoration: none;
+  font-size: .9375rem;
+  font-weight: 600;
+  padding: 9px 17px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+}
+
+.nav-cta:hover,
+.nav-cta.active {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.menu {
+  display: none;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Typography & Shared Sections */
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.breadcrumb a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: .8125rem;
+  font-weight: 750;
+  color: var(--green);
+  display: block;
+  margin-bottom: 18px;
+}
+
+h1, h2, h3, h4, p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4.8vw, 3.875rem);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  margin-bottom: 22px;
+  font-weight: 650;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section.soft {
+  background: var(--soft);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: end;
+  margin-bottom: 38px;
+}
+
+.section-head h2,
+.contact h2 {
+  font-size: clamp(1.95rem, 3.5vw, 2.75rem);
+  letter-spacing: -.035em;
+  line-height: 1.15;
+  margin-bottom: 0;
+  font-weight: 620;
+}
+
+.section-head p,
+.intro,
+.tool-card p,
+.group-note,
+.contact p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+/* Buttons & Filter Pills */
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  font-size: .9375rem;
+  font-weight: 650;
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.btn:hover {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+  transform: translateY(-1px);
+}
+
+/* Page Hero */
+.page-hero {
+  padding: 76px 0 60px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 56ch;
+  margin-bottom: 16px;
+}
+
+.summary-box {
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(20, 45, 50, .1);
+}
+
+.summary-box small {
+  display: block;
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.summary-stat {
+  background: var(--ink-soft);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.summary-stat strong {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+.summary-stat span {
+  font-size: .8125rem;
+  color: #c4d4d2;
+}
+
+/* My Toolkit Feature Section */
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.toolkit-copy .standfirst {
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.toolkit-copy p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+.toolkit-note {
+  font-size: .875rem;
+  color: var(--muted);
+  border-top: 1px solid #cfd9cf;
+  padding-top: 16px;
+  margin-top: 24px;
+}
+
+.toolkit-panel {
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 18px 50px rgba(20, 45, 50, .1);
+}
+
+.toolkit-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.toolkit-panel-head h3 {
+  font-size: .8125rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0;
+}
+
+.toolkit-panel-head span {
+  font-size: .75rem;
+  color: #9ebcb4;
+  font-weight: 600;
+}
+
+.toolkit-group {
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  padding: 14px 0;
+}
+
+.toolkit-group:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.toolkit-group h4 {
+  font-size: .8125rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #9ecbb7;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.toolkit-links {
+  display: grid;
+  gap: 8px;
+}
+
+.toolkit-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  text-decoration: none;
+  background: var(--ink-soft);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: .9rem;
+  color: var(--white);
+}
+
+.toolkit-links a:hover {
+  border-color: var(--accent);
+  background: #26484d;
+  transform: translateX(2px);
+}
+
+.toolkit-links a small {
+  font-size: .78rem;
+  color: #b7cbc6;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.toolkit-panel-foot {
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  margin-top: 16px;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: .8125rem;
+  color: #9ebcb4;
+}
+
+.toolkit-panel-foot a {
+  color: var(--accent);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.toolkit-panel-foot a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+
+.filter-btn {
+  padding: 9px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  font-size: .875rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+/* Tool Cards */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tool-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
+}
+
+.tool-card[hidden] {
+  display: none;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+  box-shadow: 0 14px 32px rgba(20, 45, 50, .07);
+}
+
+.tool-cat {
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.tool-card h3 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+}
+
+.tool-card p {
+  font-size: .9375rem;
+  margin: 0 0 18px;
+}
+
+.tool-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.pill {
+  font-size: .8125rem;
+  font-weight: 650;
+  color: var(--green-deep);
+  background: var(--mint-tint);
+  border: 1px solid #a1c8af;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.tool-go {
+  margin-top: auto;
+  font-size: .9375rem;
+  font-weight: 700;
+  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Assumptions & Guardrails Strip */
+.guardrails {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.guardrail-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+
+.guardrail-card span {
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--green);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.guardrail-card h3 {
+  font-size: 1.1875rem;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+.guardrail-card p {
+  font-size: .9375rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Contact & Footer */
+.contact {
+  padding: 76px 0;
+  background: #dcebdd;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.contact p {
+  margin: 18px 0 0;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.email-link {
+  font-size: clamp(1rem, 2vw, 1.4375rem);
+  font-weight: 650;
+  letter-spacing: -.02em;
+  text-underline-offset: 6px;
+  overflow-wrap: anywhere;
+}
+
+.contact-small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: .9375rem;
+  margin-top: 8px;
+}
+
+.contact-small a {
+  padding-block: 4px;
+  text-underline-offset: 4px;
+}
+
+footer {
+  padding: 26px 0;
+  font-size: .875rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-top {
+  text-underline-offset: 4px;
+}
+
+/* Focus Visibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .links {
+    gap: 16px;
+  }
+  .tools-grid,
+  .guardrails {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .page-hero-grid,
+  .toolkit-grid,
+  .section-head,
+  .contact-grid {
+    gap: 36px;
+  }
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    width: calc(100% - 40px);
+  }
+  .nav {
+    min-height: 70px;
+    position: relative;
+  }
+  .brand {
+    font-size: 1.0625rem;
+  }
+  .menu {
+    display: inline-flex;
+    align-items: center;
+  }
+  .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    right: -20px;
+    padding: 16px 20px 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(20, 45, 50, .08);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  .links.open {
+    display: flex;
+  }
+  .links a {
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .links a:hover {
+    background: var(--soft);
+  }
+  .page-hero {
+    padding: 52px 0 44px;
+  }
+  .page-hero-grid,
+  .toolkit-grid,
+  .section-head,
+  .tools-grid,
+  .guardrails,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .section {
+    padding: 58px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrap {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media print {
+  header, .actions, .filter-bar, .contact-actions, .skip {
+    display: none;
+  }
+  .section, .page-hero, .contact {
+    padding: 24px 0;
+  }
+  .wrap {
+    width: 100%;
+  }
+  .tool-card[hidden] {
+    display: flex;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Pratap Nayak home">
+      <span class="monogram" aria-hidden="true">PN</span>Pratap Nayak
+    </a>
+    <button class="menu" aria-expanded="false" aria-controls="navigation">Menu</button>
+    <nav id="navigation" class="links" aria-label="Main navigation">
+      <a href="index.html">← Home</a>
+      <a href="index.html#impact">Impact</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Selected work</a>
+      <a class="active" href="tools.html" aria-current="page">Working library</a>
+      <a href="index.html#perspective">Perspective</a>
+      <a class="nav-cta" href="index.html#contact">Let’s connect ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero" id="top">
+    <div class="wrap page-hero-grid">
+      <div>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Working library</span>
+        </nav>
+        <span class="eyebrow">Working library · Browser-based tools</span>
+        <h1>Engineering depth.<br>Connected thinking.<br><em>Practical impact.</em></h1>
+        <p class="lead">Small calculators, quality &amp; flow analysers, and operational frameworks built in the open so inputs, edge cases, and assumptions can be inspected directly in a browser.</p>
+        <p class="intro">Pratap Nayak · Bengaluru, India · Manufacturing &amp; engineering · Digital &amp; AI enablement.</p>
+        <div class="actions">
+          <a class="btn primary" href="#my-toolkit">Explore My Toolkit <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="#catalog">Browse all tools <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="index.html">Back to home <span aria-hidden="true">←</span></a>
+        </div>
+      </div>
+
+      <aside class="summary-box" aria-label="Library overview">
+        <small>Published collection</small>
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <strong>9</strong>
+            <span>Machining calculators (My Toolkit)</span>
+          </div>
+          <div class="summary-stat">
+            <strong>15</strong>
+            <span>Quality &amp; flow tools</span>
+          </div>
+          <div class="summary-stat">
+            <strong>7</strong>
+            <span>Featured catalog entries</span>
+          </div>
+          <div class="summary-stat">
+            <strong>3</strong>
+            <span>Rollout &amp; guardrail steps</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section soft" id="my-toolkit">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">My Toolkit · Engineering depth in practice</span>
+          <h2>From shop-floor cutting mechanics to structured decisions.</h2>
+        </div>
+        <p>A dedicated collection of browser-based machining, tooling, and leadership calculators built from my cutting-tool engineering foundation—each pre-loaded with a worked example, governing formulas, and shop-floor caveats.</p>
+      </div>
+
+      <div class="toolkit-grid">
+        <div class="toolkit-copy">
+          <p class="standfirst">My Toolkit turns metal-cutting physics and manufacturing economics into interactive calculators you can inspect and test.</p>
+          <p>In machining and cutting-tool engineering, small parameter shifts carry steep trade-offs: raising cutting speed boosts removal rate but compresses insert life along the Taylor curve; choosing a speed by habit rather than the Engineered Productivity window leaves either machine capacity or edge life on the table.</p>
+          <p>Every calculator inside <strong>My Toolkit</strong> opens in your browser with a realistic worked example already populated—alongside step-by-step usage guidance, explicit equations (specific cutting force <em>kc</em>, MRR, Taylor <em>V·Tⁿ = C</em>, and minimum-cost vs. maximum-production tool life), and practical “watch out for” boundary checks.</p>
+          <p>While anchored in machining and cutting-tool engineering, the broader toolkit connects directly into Engineering, Operations, Leadership, and Communication decision aids—9 machining calculators in My Toolkit plus 6 additional catalog &amp; repository entries (7 total catalog entries) hosted openly on GitHub Pages.</p>
+
+          <div class="actions">
+            <a class="btn primary" href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html" target="_blank" rel="noopener noreferrer">Open My Toolkit: Machining &amp; Cutting Tools <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/index.html" target="_blank" rel="noopener noreferrer">Full Toolkit Overview (9 Machining Tools) <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <p class="toolkit-note">Pre-loaded worked examples · Governing formulas &amp; caveats documented · No sign-in or installation required.</p>
+        </div>
+
+        <aside class="toolkit-panel" aria-label="Machining and cutting tools modules">
+          <div class="toolkit-panel-head">
+            <h3>Machining &amp; Cutting Tools</h3>
+            <span>9 interactive calculators</span>
+          </div>
+
+          <div class="toolkit-group">
+            <h4>01 · Cutting Mechanics &amp; Parameters</h4>
+            <div class="toolkit-links">
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#cutting-parameters" target="_blank" rel="noopener noreferrer">
+                <span>Speeds, feeds and power</span>
+                <small>RPM · MRR · kc ↗</small>
+              </a>
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#chip-and-shear" target="_blank" rel="noopener noreferrer">
+                <span>Cutting forces and shear angle</span>
+                <small>Chip mechanics ↗</small>
+              </a>
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#surface-finish" target="_blank" rel="noopener noreferrer">
+                <span>Surface finish: feed and nose radius</span>
+                <small>Ra / Rt check ↗</small>
+              </a>
+            </div>
+          </div>
+
+          <div class="toolkit-group">
+            <h4>02 · Tool Life &amp; Productivity Windows</h4>
+            <div class="toolkit-links">
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#taylor-tool-life" target="_blank" rel="noopener noreferrer">
+                <span>Tool life (Taylor equation)</span>
+                <small>V·Tⁿ = C ↗</small>
+              </a>
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#engineered-productivity" target="_blank" rel="noopener noreferrer">
+                <span>Engineered Productivity</span>
+                <small>Tp &amp; Tc window ↗</small>
+              </a>
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#cycle-time" target="_blank" rel="noopener noreferrer">
+                <span>CNC cycle time &amp; parts per shift</span>
+                <small>Shift output ↗</small>
+              </a>
+            </div>
+          </div>
+
+          <div class="toolkit-group">
+            <h4>03 · Process &amp; Commercial Value</h4>
+            <div class="toolkit-links">
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#cost-per-part" target="_blank" rel="noopener noreferrer">
+                <span>Cost per part: current vs proposed</span>
+                <small>Tooling trade-off ↗</small>
+              </a>
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#savings-business-case" target="_blank" rel="noopener noreferrer">
+                <span>Customer value business case</span>
+                <small>Quantified savings ↗</small>
+              </a>
+              <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html#sheet-metal" target="_blank" rel="noopener noreferrer">
+                <span>Sheet metal: punching &amp; bending</span>
+                <small>Tonnage &amp; springback ↗</small>
+              </a>
+            </div>
+          </div>
+
+          <div class="toolkit-panel-foot">
+            <span>Also spans Engineering, Operations, Leadership &amp; Communication</span>
+            <a href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/tools/index.html" target="_blank" rel="noopener noreferrer">All 9 machining modules ↗</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalog">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Interactive catalog</span>
+          <h2>Built to be checked.<br>Not just asserted.</h2>
+        </div>
+        <p>Filter by domain to jump to browser calculators, manufacturing quality suites, supply chain models, and leadership decision aids.</p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter tools by category">
+        <button class="filter-btn active" data-filter="all">All (7)</button>
+        <button class="filter-btn" data-filter="economics">Manufacturing Economics</button>
+        <button class="filter-btn" data-filter="quality">Quality &amp; Flow</button>
+        <button class="filter-btn" data-filter="ai">Technology &amp; AI</button>
+        <button class="filter-btn" data-filter="operations">Operations &amp; Supply Chain</button>
+        <button class="filter-btn" data-filter="leadership">Technical Leadership</button>
+      </div>
+
+      <div class="tools-grid">
+        <a class="tool-card" data-category="economics" href="https://nayak-pratap.github.io/MBA_Managers_Toolkit/machining-tools.html" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">My Toolkit · Machining</span>
+          <h3>Machining &amp; Cutting Tools (9 Calculators)</h3>
+          <p>Speeds/feeds, Taylor tool life, Engineered Productivity (Tp/Tc), cost per part, cutting forces, surface finish, sheet metal, and CNC cycle time.</p>
+          <div class="tool-meta">
+            <span class="pill">9 calculators</span>
+            <span class="pill">Worked examples</span>
+          </div>
+          <span class="tool-go">Open My Toolkit ↗</span>
+        </a>
+
+        <a class="tool-card" data-category="economics" href="https://nayak-pratap.github.io/MBA-Business-Case-Cost-per-Part/" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">Manufacturing Economics</span>
+          <h3>Cost per Part Calculator</h3>
+          <p>Business-case calculator for machining cost per part, tooling amortization, NPV, and break-even volume.</p>
+          <div class="tool-meta">
+            <span class="pill">NPV &amp; Break-even</span>
+            <span class="pill">Editable inputs</span>
+          </div>
+          <span class="tool-go">Open GitHub Calculator ↗</span>
+        </a>
+
+        <a class="tool-card" data-category="quality" href="https://nayak-pratap.github.io/ENG_MFG_Quality_Tools/index.html" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">Quality &amp; Flow</span>
+          <h3>Quality and Flow Tools (15 Tools)</h3>
+          <p>Interactive suite covering SPC, FMEA, DPMO-to-sigma, Gage R&amp;R, Pareto, 8D, A3, PPAP, QFD, SMED, OEE/takt, and VSM.</p>
+          <div class="tool-meta">
+            <span class="pill">SPC · FMEA · OEE</span>
+            <span class="pill">15 browser tools</span>
+          </div>
+          <span class="tool-go">Open GitHub Toolkit ↗</span>
+        </a>
+
+        <a class="tool-card" data-category="ai" href="https://nayak-pratap.github.io/MBA-Engineering-AI-Value-Case/" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">Technology &amp; AI</span>
+          <h3>Engineering AI Value Case</h3>
+          <p>Evidence-tagged value case for engineering AI initiatives that separates measured inputs from key assumptions.</p>
+          <div class="tool-meta">
+            <span class="pill">Evidence tagging</span>
+            <span class="pill">AI business case</span>
+          </div>
+          <span class="tool-go">Open GitHub Value Case ↗</span>
+        </a>
+
+        <a class="tool-card" data-category="operations" href="https://nayak-pratap.github.io/MBA-SCM-Facility-Location-MILP/" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">Operations &amp; Supply Chain</span>
+          <h3>Facility Location (MILP)</h3>
+          <p>Mixed-integer linear programming model for evaluating plant/warehouse location and network trade-offs.</p>
+          <div class="tool-meta">
+            <span class="pill">Network optimization</span>
+            <span class="pill">Trade-off analysis</span>
+          </div>
+          <span class="tool-go">Open GitHub Model ↗</span>
+        </a>
+
+        <a class="tool-card" data-category="leadership" href="https://nayak-pratap.github.io/MBA-Interview-Panel-Score-Audit/" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">Technical Leadership</span>
+          <h3>Interview Panel Score Audit</h3>
+          <p>Evaluates how interviewer leniency affects hiring shortlists and where candidate signals remain indistinguishable.</p>
+          <div class="tool-meta">
+            <span class="pill">Panel calibration</span>
+            <span class="pill">Signal audit</span>
+          </div>
+          <span class="tool-go">Open GitHub Audit ↗</span>
+        </a>
+
+        <a class="tool-card" data-category="leadership" href="https://github.com/nayak-pratap" target="_blank" rel="noopener noreferrer">
+          <span class="tool-cat">Frameworks &amp; Repositories</span>
+          <h3>GitHub Repositories &amp; Frameworks</h3>
+          <p>Source code and reference guides spanning operational excellence frameworks, DMAIC workbooks, and decision aids.</p>
+          <div class="tool-meta">
+            <span class="pill">Open source logic</span>
+            <span class="pill">No sign-in</span>
+          </div>
+          <span class="tool-go">View GitHub Profile ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="assumptions">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">How to use these tools</span>
+          <h2>Transparent logic.<br>Shop-floor accountability.</h2>
+        </div>
+        <p>Every tool is built to clarify assumptions and support structured thinking—never to replace empirical trials or engineering sign-off.</p>
+      </div>
+
+      <div class="guardrails">
+        <article class="guardrail-card">
+          <span>01 · SEPARATE ASSUMPTIONS</span>
+          <h3>Inputs vs. measured data</h3>
+          <p>Model assumptions and edge cases are separated from observed shop-floor data so sensitivity to key parameters is visible.</p>
+        </article>
+        <article class="guardrail-card">
+          <span>02 · VERIFY BEFORE EXECUTION</span>
+          <h3>Reference &amp; learning aids</h3>
+          <p>All examples are synthetic. Verify parameters against tool/machine maker recommendations and local quality policy before production use.</p>
+        </article>
+        <article class="guardrail-card">
+          <span>03 · INDEPENDENT PERSPECTIVE</span>
+          <h3>Personal working library</h3>
+          <p>Built as a personal learning and decision-support library; views and models reflect independent exploration.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow">Connect</span>
+        <h2>Let’s talk about<br>what can work better.</h2>
+        <p>I welcome conversations about engineering performance, digital transformation, knowledge-led improvement, and practical AI adoption in manufacturing.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="email-link" href="mailto:pratapnayak.work@gmail.com">pratapnayak.work@gmail.com ↗</a>
+        <div class="contact-small">
+          <a href="https://www.linkedin.com/in/pratap-nayak" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+          <a href="https://github.com/nayak-pratap/" target="_blank" rel="noopener noreferrer">View GitHub ↗</a>
+          <a href="index.html">Back to home ↑</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Pratap Nayak · Bengaluru, India</span>
+    <span>Engineering depth. Connected thinking. Practical impact.</span>
+    <a class="footer-top" href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+const menu = document.querySelector('.menu');
+const nav = document.querySelector('.links');
+const navLinks = Array.from(nav.querySelectorAll('a'));
+
+menu.addEventListener('click', () => {
+  const open = menu.getAttribute('aria-expanded') !== 'true';
+  menu.setAttribute('aria-expanded', String(open));
+  nav.classList.toggle('open', open);
+  menu.textContent = open ? 'Close' : 'Menu';
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menu.setAttribute('aria-expanded', 'false');
+    menu.textContent = 'Menu';
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && nav.classList.contains('open')) {
+    nav.classList.remove('open');
+    menu.setAttribute('aria-expanded', 'false');
+    menu.textContent = 'Menu';
+    menu.focus();
+  }
+});
+
+/* Category Filter */
+const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+const toolCards = Array.from(document.querySelectorAll('.tool-card'));
+
+filterBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const selected = btn.getAttribute('data-filter');
+    filterBtns.forEach((b) => b.classList.toggle('active', b === btn));
+    toolCards.forEach((card) => {
+      const cat = card.getAttribute('data-category');
+      card.hidden = selected !== 'all' && cat !== selected;
+    });
+  });
+});
+
+document.getElementById('year').textContent = String(new Date().getFullYear());
+</script>
+</body>
+</html>
